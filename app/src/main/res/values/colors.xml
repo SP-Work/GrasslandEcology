@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#999999</color>
+    <color name="orange">#F4632D</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="headColor">#03a64b</color>
+    <color name="bgWhite">#f2f2f2</color>
+
+    <color name="txColor">#666666</color>
+
+    <color name="tableBackground">#d4d4d4</color>
+
+</resources>
