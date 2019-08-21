@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgWhite"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -28,27 +28,36 @@
             <RadioButton
                 android:id="@+id/rb_home"
                 style="@style/style_RadioButton"
+                android:drawableTop="@drawable/rb_home_selector"
                 android:checked="true"
                 android:text="@string/home"/>
 
             <RadioButton
                 android:id="@+id/rb_dc"
                 style="@style/style_RadioButton"
+                android:layout_marginEnd="10dp"
+                android:drawableTop="@drawable/rb_data_selector"
                 android:text="@string/data_collection"/>
 
             <RadioButton
                 android:id="@+id/rb_pr"
-                style="@style/style_RadioButton"
-                android:text="@string/plant_recognition"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/icon_plant_recognition"
+                android:button="@null"/>
 
             <RadioButton
                 android:id="@+id/rb_en"
                 style="@style/style_RadioButton"
+                android:layout_marginStart="10dp"
+                android:drawableTop="@drawable/rb_ecological_selector"
                 android:text="@string/ecological_navigation"/>
 
             <RadioButton
                 android:id="@+id/rb_pc"
                 style="@style/style_RadioButton"
+                android:drawableTop="@drawable/rb_personal_selector"
                 android:text="@string/personal_center"/>
         </RadioGroup>
     </RelativeLayout>

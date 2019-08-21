@@ -1,11 +1,10 @@
 package com.otitan.grasslandecology;
 
-import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -16,6 +15,7 @@ import com.otitan.grasslandecology.fragment.HomeFragment;
 import com.otitan.grasslandecology.fragment.PersonalCenterFragment;
 import com.otitan.grasslandecology.fragment.PlantRecognitionFragment;
 import com.otitan.grasslandecology.permission.PermissionsChecker;
+import com.otitan.grasslandecology.util.ToastUtil;
 import com.otitan.grasslandecology.view.NoScrollViewPager;
 
 import java.util.ArrayList;
@@ -41,15 +41,15 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @BindView(R.id.rb_pc)
     RadioButton mRb_pc;
 
-    private Context mContext;
-
     /**动态检测权限*/
     private static final int REQUEST_CODE = 10000; // 权限请求码
-    private PermissionsChecker permissionsChecker;
     private String[] permissions = new String[] {
             android.Manifest.permission.READ_PHONE_STATE,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.ACCESS_FINE_LOCATION,
+            android.Manifest.permission.ACCESS_NETWORK_STATE,
+            android.Manifest.permission.ACCESS_COARSE_LOCATION,
+            android.Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
             android.Manifest.permission.CAMERA
     };
 
@@ -58,12 +58,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mContext = MainActivity.this;
-
         ButterKnife.bind(this);
 
-        permissionsChecker = new PermissionsChecker(this);
-        // 缺少权限时, 进入权限配置页面
+        PermissionsChecker permissionsChecker = new PermissionsChecker(this);
         if (permissionsChecker.lacksPermissions(permissions)) {
             ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
         }
@@ -134,6 +131,22 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             case R.id.rb_pc:
                 mVp_main.setCurrentItem(4, false);
                 break;
+        }
+    }
+
+    /**
+     * 手机返回键监听
+     */
+    long firstTime = 0;
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        long secondTime = System.currentTimeMillis();
+        if (secondTime - firstTime > 800) { // 两次点击间隔大于800毫秒，不退出
+            ToastUtil.setToast(this, "再按一次退出程序");
+            firstTime = secondTime; // 更新firstTime
+        } else {
+            System.exit(0); // 退出APP
         }
     }
 }

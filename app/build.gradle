@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.objectbox'
 
 android {
     compileSdkVersion 28
@@ -9,6 +10,10 @@ android {
         versionCode 1
         versionName "1.00"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        /*ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86_64"
+        }*/
     }
     buildTypes {
         release {
@@ -16,6 +21,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    /*sourceSets {
+        main {
+            jniLibs.srcDirs ['libs']
+        }
+    }*/
 }
 
 dependencies {
@@ -32,4 +43,41 @@ dependencies {
     // butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    // Objectbox
+    implementation 'io.objectbox:objectbox-android:1.5.0'
+
+    // 图片
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+
+    // rxjava
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+
+    // gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    // xml
+    implementation('com.squareup.retrofit2:converter-simplexml:2.4.0') {
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax'
+    }
+
+    // banner
+    implementation 'com.youth.banner:banner:1.4.9'
+
+    /*// 3D地图
+    implementation 'com.amap.api:3dmap:6.9.2'
+    // 2D地图
+    implementation 'com.amap.api:map2d:5.2.0'
+    // 导航
+    implementation 'com.amap.api:navi-3dmap:6.7.0'
+    // 搜索
+    implementation 'com.amap.api:search:6.9.2'
+    // 定位
+    implementation 'com.amap.api:location:4.7.0'*/
 }
