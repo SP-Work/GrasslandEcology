@@ -15,8 +15,13 @@
         <com.amap.api.maps.MapView
             android:id="@+id/mv_ali"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            android:visibility="gone">
         </com.amap.api.maps.MapView>
+
+        <com.amap.api.navi.AMapNaviView
+            android:id="@+id/AMapNaviView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
